@@ -1,5 +1,4 @@
 #include "play_guess_the_number.hpp"
-#include <iostream>
 #include "get_input_from_user.hpp"
 #include "rand.hpp"
 

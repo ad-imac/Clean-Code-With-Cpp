@@ -1,7 +1,6 @@
 #include "hangman.hpp"
 #include <array>
 #include <cassert>
-#include <iostream>
 #include <string>
 #include "get_input_from_user.hpp"
 #include "rand.hpp"
