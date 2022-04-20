@@ -1,6 +1,7 @@
 #include "menu.hpp"
 #include "get_input_from_user.hpp"
 #include "hangman.hpp"
+#include "noughts_and_crosses.hpp"
 #include "play_guess_the_number.hpp"
 
 void show_the_list_of_commands()
@@ -8,6 +9,7 @@ void show_the_list_of_commands()
     std::cout << "What do you want to do?" << std::endl
               << "1: Play Guess the Number" << std::endl
               << "2: Play Hangman" << std::endl
+              << "3: Noughts and Crosses " << std::endl
               << "q: Quit" << std::endl;
 }
 
@@ -24,6 +26,10 @@ void menu()
 
         case '2':
             play_hangman();
+            break;
+
+        case '3':
+            noughts_and_crosses();
             break;
 
         case 'q':

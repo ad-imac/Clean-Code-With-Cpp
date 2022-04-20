@@ -1,6 +1,8 @@
-#include "menu.hpp"
+// #include "menu.hpp"
+#include "noughts_and_crosses.hpp"
 
 int main()
 {
-    menu();
+    noughts_and_crosses();
+    // menu();
 }
