@@ -1,13 +1,63 @@
 #include "noughts_and_crosses.hpp"
 #include "../lib/p6/include/p6/p6.h"
 
+void draw_board(int size, p6::Context& ctx)
+{
+    // ###############################################################################
+    ctx.fill = {p6::NamedColor::PaleChestnut};
+    ctx.square(p6::BottomLeftCorner{-1.f, -1.f},
+               p6::Radius{1.f / static_cast<float>(size)});
+
+    ctx.square(p6::BottomLeftCorner{-1.f, 1.f / static_cast<float>(size)},
+               p6::Radius{1.f / static_cast<float>(size)});
+
+    ctx.square(p6::BottomLeftCorner{-1.f, -1.f / static_cast<float>(size)},
+               p6::Radius{1.f / static_cast<float>(size)});
+
+    // ###############################################################################
+    ctx.fill = {p6::NamedColor::PaleBrown};
+    ctx.square(p6::BottomLeftCorner{-1.f / static_cast<float>(size), -1.f},
+               p6::Radius{1.f / static_cast<float>(size)});
+
+    ctx.square(p6::BottomLeftCorner{-1.f / static_cast<float>(size), -1.f / static_cast<float>(size)},
+               p6::Radius{1.f / static_cast<float>(size)});
+
+    ctx.square(p6::BottomLeftCorner{-1.f / static_cast<float>(size), 1.f / static_cast<float>(size)},
+               p6::Radius{1.f / static_cast<float>(size)});
+
+    // ###############################################################################
+    ctx.fill = {p6::NamedColor::PaleCopper};
+    ctx.square(p6::BottomLeftCorner{1.f / static_cast<float>(size), -1.f},
+               p6::Radius{1.f / static_cast<float>(size)});
+
+    ctx.square(p6::BottomLeftCorner{1.f / static_cast<float>(size), -1.f / static_cast<float>(size)},
+               p6::Radius{1.f / static_cast<float>(size)});
+
+    ctx.square(p6::BottomLeftCorner{1.f / static_cast<float>(size), 1.f / static_cast<float>(size)},
+               p6::Radius{1.f / static_cast<float>(size)});
+    // ###############################################################################
+
+    ctx.fill = {p6::NamedColor::PurpleHeart};
+
+    std::vector<glm::vec2> vec = {
+        glm::vec2(-1.f, -1.f),
+        glm::vec2(-1.f, 1.f / static_cast<float>(size)),
+        glm::vec2(-1.f, -1.f / static_cast<float>(size)),
+    };
+    for (size_t x = 0; x < vec.size(); x++) {
+        ctx.square(p6::BottomLeftCorner{vec[x]},
+                   p6::Radius{1.f / static_cast<float>(size)});
+    }
+}
+
 void noughts_and_crosses()
 {
-    auto ctx   = p6::Context{{1280, 720, "Hello p6"}};
-    ctx.update = [&]() {                    // Define the function that will be called in a loop once you call ctx.start()
-        ctx.background({0.5f, 0.3f, 0.8f}); // Clear the background with some color (Try to comment out this line to see what happens)
-        ctx.square(p6::Center{ctx.mouse()}, // Draw a circle centered on the mouse cursor
-                   p6::Radius{0.3f});       // with a radius of 0.3
+    auto ctx   = p6::Context{{720, 720, "Noughts and Crosses"}};
+    ctx.update = [&]() {
+        ctx.background({p6::hex(0xFFFFFF)});
+        ctx.stroke = {p6::hex(0xFFFFFF)};
+        // ctx.fill   = {p6::NamedColor::PurpleHeart};
+        draw_board(3, ctx);
     };
     ctx.start();
 }
